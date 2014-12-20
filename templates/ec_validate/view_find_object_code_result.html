@@ -1,0 +1,72 @@
+{% extends "ec_validate/base.html" %}
+{% load humanize %} 
+
+{% block main_content %}
+
+<div style="padding:5px 0;"><!-- start: enclosing div -->
+    {% if err_found %}
+        <div class="err_box">    
+            {% if ERR_not_lab_user %}
+                Sorry!  You don't have access to this page.
+            {% endif %}
+                
+        </div>
+    {% endif %}
+    
+    <div style="width:600px; padding:10px 0;margin:0px 0px; xborder:1px solid #999; font-weight:bold;font-size:120%;">
+        Object Code Definition Results 
+    </div>
+    
+    {% if not objects_found_list %}
+    <div class="err_box">    
+        Sorry!  No objects codes were found.
+        
+        <p>&gt; <a href={% url view_define_ec_form %}>Please try again</a></p>
+    
+    </div>
+    {% endif %}
+
+
+    {% if objects_found_list %}
+    <p><b>&gt; {{ objects_found_list.count|intcomma }} Definition result{{ objects_found_list.count|pluralize }} found:</b>
+        
+        <br /><br />(<a href={% url view_define_ec_form %}>Look up another definition</a>)</p>
+    <div class="ec_defined_tbl2">
+    <table cellpadding="10" cellspacing="0" border="0">
+        <tr>
+            <td>&nbsp;</td>
+            <td><b>Object Code</b></td>
+            <td><b>Definition</b></td>
+            <td><b>Active</b></td>
+        </tr>
+        {% for oc in objects_found_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ oc.value }}</td>       
+            <td>{{ oc.desc }}</td>
+            <td>{% if oc.enabled_flag %}YES
+                    <div class="yes_block"></div>
+                {% else %}NO
+                    <div class="no_block"></div>
+                
+                {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+
+    <p>&gt; <a href={% url view_define_ec_form %}>Look up another definition</a></p>
+    
+    <div class="clear"></div>
+</div><!-- end: enclosing div -->
+
+
+{% endblock  %}
+
+
+
+
+
+
+ 

@@ -1,4 +1,6 @@
 mcb-finance-utilities
 =====================
 
-older mcb code
+Utilities for finance department.
+
+(old mcb code, dark ages, pre virtualenv, requirements, etc.)

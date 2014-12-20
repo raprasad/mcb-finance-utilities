@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Expense Code Validator</title>
+
+<meta name="MSSmartTagsPreventParsing" content="true" />
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+{% block additional_header_info %}
+{% include "ec_validate/css_info.html" %}
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}ec_assets/bootstrap/css/bootstrap.css" />
+<script type="text/javascript">
+<!--
+/*
+$(document).ready(function(){
+	set_mail_links();
+});
+*/	  
+//-->
+</script>
+
+</head>
+<body>
+    {% include "ec_validate/menu.html" %}
+        <div style="margin:20px 40px;">
+        {% block main_content %}
+            
+        {% endblock %}</div>
+        <div style="margin:0 0 20px 0; padding:10px 40px;width:100%; xborder-bottom:1px solid #003f65; border-top:1px solid #003f65; font-size:11px;">
+{% now "F jS, Y f:s a" %} (test)
+</div>
+</body>
+</html>

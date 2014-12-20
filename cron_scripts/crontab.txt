@@ -1,0 +1,41 @@
+#--------------------------------------
+# COA file updates: 5:55am, Mon-Fri
+#--------------------------------------
+55 5 * * 1-5 /usr/bin/python /var/webapps/django/mcb-finance-utilities/cron_scripts/coa_load/run_coa_file_loader.py
+
+#--------------------------------------
+# Tuesday to Saturday database backups
+# Run database backup (mysqldump) each morning
+#--------------------------------------
+# COURSE DB
+25 7 * * 2-6 /usr/bin/python /var/webapps/django/Course-Tracker/cron_scripts/db_backup/run_db_backup.py
+#
+# HCOM/FINANCE DB
+15 7 * * 2-6 /usr/bin/python /var/webapps/django/mcb-finance-utilities/cron_scripts/db_backup/run_db_backup.py
+#
+# GMF DB
+10 7 * * 2-6 /usr/bin/python /var/webapps/django/GMF-Services/gmf_services/cron_scripts/db_backup/run_db_backup.py
+#
+# GRAD DB
+40 6 * * 2-6 /usr/bin/python /var/webapps/django/Graduate-Student-Database/cron_scripts/run_db_backup.py
+#
+#--------------------------------------
+# Twice a month removing of old db backups
+#--------------------------------------
+# COURSE DB
+# run database back up on 2nd and 16th of each month; a few seconds
+15 6 2,16 * * /usr/bin/python /var/webapps/django/Course-Tracker/cron_scripts/db_backup/run_trim_backups.py
+#
+#
+# HCOM/FINANCE DB
+# run database back up on 2nd and 16th of each month; a few seconds
+17 6 2,16 * * /usr/bin/python /var/webapps/django/mcb-finance-utilities/cron_scripts/db_backup/run_trim_backups.py
+#
+# GMF DB
+# run database back up on 2nd and 16th of each month; a few seconds
+19 6 2,16 * * /usr/bin/python /var/webapps/django/GMF-Services/gmf_services/cron_scripts/db_backup/run_trim_backups.py
+#
+# GRAD DB
+# run database back up on 2nd and 16th of each month; a few seconds
+21 6 2,16 * * /usr/bin/python /var/webapps/django/Graduate-Student-Database/cron_scripts/run_trim_backups.py
+~

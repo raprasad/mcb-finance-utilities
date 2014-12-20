@@ -1,0 +1,48 @@
+{% extends "ec_validate/base2.html" %}
+
+
+{% block additional_header_info %}
+{{ block.super }}
+
+<script type="text/javascript">
+
+$(function () {
+       $("[rel='tooltip']").tooltip();
+     //  alert('ok');
+   });
+
+</script>
+{% endblock %}
+    
+{% block main_content %}
+    
+    {% if validation_results %}
+    
+        {#% include "ec_validate/ec_define_form_results.html" %#}
+    {% endif %}    
+    {% if ERR_form_not_valid %}
+           <div class="alert alert-error">
+                Please check the errors below. 
+            </div>   
+    {% endif %}
+    {% if not validation_results %}
+        
+        {% include "ec_validate/ec_define_form.html" %}
+        {#% include "ec_validate/ec_validation_help_modal.html" %#}
+    {% else %}
+    
+    
+    {#% include "ec_validate/ec_validation_more_link.html" %#}
+    
+    {% endif %}
+    
+
+
+{% endblock  %}
+
+
+
+
+
+
+ 

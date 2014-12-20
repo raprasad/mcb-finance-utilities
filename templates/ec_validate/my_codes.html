@@ -1,0 +1,114 @@
+{% extends "ec_validate/base2.html" %}
+
+
+{% block additional_header_info %}
+{{ block.super }}
+
+<script language="javascript" type="text/javascript">
+<!--
+
+$(document).ready(function(){
+    {% if num_codes > 0 %}
+    $('.code_defn_div').hide();
+    
+    show_codes_text = 'Show All Expense Code Descriptions';
+    hide_codes_text = 'Hide All Expense Code Descriptions';
+    
+    show_single_desc_text = 'Show';
+    hide_single_desc_text = 'Hide';
+    
+   $('#lnk_expand_codes').click(function() {
+       if ($('#lnk_expand_codes').text() == show_codes_text){
+           // Show Codes
+           $('.code_defn_div').slideDown();
+           $('.hidden_desc').hide();
+           $('#lnk_expand_codes').text(hide_codes_text);      
+           $('a.expand_lnk').text(hide_single_desc_text);
+        
+       }else{
+           // Hide Codes
+           $('.code_defn_div').slideUp();
+           $('#lnk_expand_codes').text(show_codes_text);
+           $('.hidden_desc').show();
+           $('a.expand_lnk').text(show_single_desc_text);
+       }
+       
+   });
+   $('#lnk_expand_codes').text(show_codes_text);
+
+   $('a.expand_lnk').click(function() {
+       div_name = this.rel;       
+        if ($(this).text() == show_single_desc_text){
+            $('#' + div_name).slideDown('fast');
+            $(this).text(hide_single_desc_text);        
+        }else{
+            $('#' + div_name).slideUp('fast');
+            $(this).text(show_single_desc_text);                    
+        }
+   });
+   $('a.expand_lnk').text(show_single_desc_text);
+   
+   
+  /*$('a.contract_lnk').click(function() {
+        div_name = this.rel
+        $('#' + div_name).slideUp('slow');
+        $(this).hide();
+   });
+   */
+    {% endif %} 
+   
+});
+//-->
+</script>
+{% endblock %}
+    
+{% block main_content %}
+    <p>{#<span class="badge badge-success">Active</span>#} Recently Checked Codes</p>
+
+
+    {% for ec in my_checked_codes %}
+      {% if forloop.first %}
+      {% if num_codes > 0 %}
+      <a id="lnk_expand_codes">Show All Expense Code Descriptions</a>
+      {% endif %}
+       <table class="table table-bordered table-striped">
+           <thead>
+               <th>#</th>
+               <th>Expense Code</th>
+               <th>Valid</th>
+               <th>Description</th>
+               <th>Last Validated<br />(Create Date)</th>
+           </thead>
+       <tbody>
+       {% endif %}
+       
+   
+       <tr>
+           <td>{{ forloop.counter }}</td> 
+           <td>{{ ec.expense_code_formatted }}</td> 
+           <td>{% if ec.is_valid %}<span class="badge badge-success">Yes</span>
+               {% else %}
+                   <span class="badge badge-important">No</span>
+               {% endif %}</td>
+           <td><a class="expand_lnk" rel="desc_div_{{ forloop.counter }}">Show</a>  {% include "ec_validate/my_codes_defn_table.html" %}</td>
+              
+           <td>{{ ec.update_time|date:"m-d-Y" }}
+               <br />({{ ec.create_time|date:"m-d-Y" }})</td>            
+      </tr>
+    {% empty %}
+          <tr>
+              <td colspan="7"><div class="alert alert-warning">
+                   Sorry, no roots in the database
+               </div></td>
+          </td>
+    {% endfor %}
+        </tbody>
+     </table>
+{% endblock  %}
+
+
+
+
+
+
+ 

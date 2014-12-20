@@ -1,0 +1,52 @@
+<div class="well">
+<b>Result{{ validation_results.num_responses|pluralize }} from checking {{ validation_results.num_responses }} 
+    expense code{{ validation_results.num_responses|pluralize }}</b>
+    
+<div  style="font-weight:normal; padding:5px 20px;">
+    <span class="badge badge-success">Valid code{{ validation_results.num_valid|pluralize }}</span>&nbsp; <b>{{ validation_results.num_valid }}</b>
+    {% if validation_results.num_server_fails > 0 %}
+    <br /><span class="badge badge-warning">Server Error{{ validation_results.num_server_fails|pluralize }}</span>&nbsp; <b>{{ validation_results.num_server_fails }}</b>
+    {% endif %}
+   <br /><span class="badge badge-important">Invalid code{{ validation_results.num_invalid|pluralize }}</span>&nbsp; <b>{{ validation_results.num_invalid }}</b></div>
+</div>
+
+{% if validation_results.num_responses > 2 %}
+{% include "ec_validate/ec_validation_more_link.html" %}
+{% endif %}
+    
+
+
+    {% for vr in validation_results.validation_response_objects %}
+        {% if forloop.first %}
+        <table class="table table-hover table-bordered">
+            <thead>
+                <th>#</th>
+                <th>Valid?</th>
+                <th>Expense Code<br />(as tested)</th>
+                <th>Definition</th>
+                {#<th>Definition</th>#}
+            </thead>
+        <tbody>
+        {% endif %}
+        
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{% if vr.is_valid %}<span class="badge badge-success">Yes</span>
+                {% else %}{% if vr.is_server_connection_err %}
+                    <span class="badge badge-warning">Server Error</span>
+                {% else %}
+                    <span class="badge badge-important">No</span>
+                {% endif %}{% endif %}</td>
+                
+            <td{% if vr.is_valid %} class="success"{% else %} xclass="error"{% endif %}>
+                <b>{{ vr.get_fmt_ec_str }}</b>
+                {% if vr.expense_code_str %}<br />({{ vr.expense_code_str }}){% endif %}
+                <br /><br />{{ vr.msg|safe }}
+                </td>                
+
+            <td> {% include "ec_validate/ec_validation_defn_tbl.html" %}</td>
+        </tr>        
+    
+        {% if forloop.last %}</tbody></table>{% endif %}
+        
+    {% endfor %}

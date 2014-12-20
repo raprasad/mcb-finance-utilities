@@ -1,0 +1,36 @@
+
+<div id="ec_help" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Expense Code Entry</h3>
+    </div>
+     <div class="modal-body">
+         <ul xclass="unstyled">
+            <li>Expense codes may be entered in any format, including columns copied out of Excel.</li>
+            <li>Examples of valid formats:     
+                <ul>
+                    
+                    <li>'<b>-</b>' separator: 
+                            &nbsp;  370<b>-</b>31330<b>-</b>8550<b>-</b>512701<b>-</b>600200<b>-</b>0000<b>-</b>50699</li>     
+                    
+                    <li>'<b>.</b>' separator: &nbsp; 370<b>.</b>31330<b>.</b>8550<b>.</b>512701<b>.</b>600200<b>.</b>0000<b>.</b>50699</li>     
+                    
+                    <li>no separator: &nbsp; 370313308550512701600200000050699</li>    
+                    <li>'xxxx' object code:  &nbsp;  370<b>-</b>31330<b>-</b>xxxx<b>-</b>512701<b>-</b>600200<b>-</b>0000<b>-</b>50699</li>     
+                        <ul>    
+                            <li> changes 'xxxx' to '{{ SUBSTITUTE_OBJECT_CODE }}'</li>
+                            <li> works with any separator--or no separator</li>
+                        </ul>
+                    <li>big mess: &nbsp; 370<b>-</b>31330<b>*</b>8550<b>/</b>512701<b>-.--</b>600200<b>.</b>0000<b></b>50699 </li>
+                </ul>
+            <!--li>Object codes 'xxxx' are switched to '8260' for validation.</li-->
+
+            <li>Blank spaces and line breaks are ignored. Invalid codes (or words, etc) are simply marked as invalid.</li>
+            <li>Validates up to {{ MAX_EXPENSE_CODES_TO_VALIDATE }} expense codes at a time.  Additional codes are ignored.</li>
+
+        </ul>
+    </div>
+</div>
+
+
+

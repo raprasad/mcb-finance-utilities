@@ -1,0 +1,55 @@
+{% if vr.ec_defined %}
+
+        <table class="table table-condensed table-hover no-table-side-border" style="border:none;" >
+            <tr{% if vr.ec_defined.tub.desc == NOT_FOUND %} class="error"{% endif %}><td>Tub:</td>
+                <td>{{ vr.ec_defined.tub.value }}</td>
+                <td>{{ vr.ec_defined.tub.desc }}
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.tub.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+            </tr>
+            <tr{% if vr.ec_defined.org.desc == NOT_FOUND %} class="error"{% endif %}>
+                <td>Org:</td>       
+                <td>{{ vr.ec_defined.org.value }}</td>
+                <td>{{ vr.ec_defined.org.desc }}
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.org.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+                </tr>
+                
+            <tr{% if vr.ec_defined.obj.desc == NOT_FOUND %} class="error"{% endif %}><td>Object:</td>    
+                <td>{{ vr.ec_defined.obj.value }}</td>
+                <td>{{ vr.ec_defined.obj.desc }} 
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.obj.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+            </tr>
+            
+            <tr{% if vr.ec_defined.fund.desc == NOT_FOUND %} class="error"{% endif %}><td>Fund:</td>      
+                <td>{{ vr.ec_defined.fund.value }}</td>
+                <td>{{ vr.ec_defined.fund.desc }}
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.fund.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+            </tr>
+            
+            <tr{% if vr.ec_defined.activity.desc == NOT_FOUND %} class="error"{% endif %}><td>Activity:</td>  
+                <td>{{ vr.ec_defined.activity.value }}</td>
+                <td>{{ vr.ec_defined.activity.desc }} 
+               {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.activity.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+               </td>
+            </tr>
+            
+            <tr{% if vr.ec_defined.subactivity.desc == NOT_FOUND %} class="error"{% endif %}><td>SubActivity:</td>   
+                <td>{{ vr.ec_defined.subactivity.value }}</td>
+                <td>{{ vr.ec_defined.subactivity.desc }}
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.subactivity.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+            </tr>
+            
+            <tr{% if vr.ec_defined.root.desc == NOT_FOUND %} class="error"{% endif %}><td>Root:</td>          
+                <td>{{ vr.ec_defined.root.value }}</td>
+                <td>{{ vr.ec_defined.root.desc }}
+                    {% if not vr.ec_defined.NOT_FOUND %}{% if not vr.ec_defined.root.enabled_flag %}<span class="badge badge-important">Inactive</span>{% endif %}{% endif %}
+                    </td>
+            </tr>
+        </table>
+    {% else %}
+        (n/a)
+    {% endif %}

@@ -1,0 +1,34 @@
+{% load url from future %}
+<!--span style="font-weight:normal">(uses the UIS validation service)</span-->
+<form method="post" action="{% url 'view_ec_validation_form' %}">
+        {% csrf_token %}
+	<table>
+    {% for field in ec_form %}
+        <tr>    
+            <td> 
+                Enter expense codes, up to {{ MAX_EXPENSE_CODES_TO_VALIDATE }}, in any format.
+                {#{ field.label }} {{ field.help_text}#} <a href="#ec_help" data-toggle="modal">(Help!)</a>
+                {% if field.errors %}
+                        <br /><span class="text-error">
+                            {% for err in field.errors %}
+                               {{ err }} 
+                            {% endfor %}</span>
+                   {% endif %}
+                <br />{{ field }}
+            </td>
+        </tr>
+        
+    {% endfor %}
+        <tr>
+            <td style="border:none; text-align:right;padding:0 0px;">
+                    <a class="btn" href="{% url 'view_ec_validation_form' %}">Reset</a>
+                    &nbsp; <input type="submit" name="submit" value="Validate Codes" class="btn btn-primary" />
+                    
+                    <p>Please be patient, this takes about 1 second per expense code.</p>
+            </td>
+        </tr>
+      	</table>
+
+      	</form>
+      
+      

@@ -1,0 +1,54 @@
+{% load url from future %}
+{% load ec_lookup_extras %}
+
+<!--span style="font-weight:normal">(uses the UIS validation service)</span-->
+
+<p>Enter at least one part of the expense code.</p>
+
+{% if validate_response %}
+<div class="well">
+
+    {% if validate_response.is_valid %}
+        <span class="badge badge-success">Yes</span> Expense Code is Valid
+    {% else %}{% if not validate_response.is_server_connection_err %}
+        <span class="badge badge-important">No</span> Expense Code is NOT Valid
+            <br />Error: {{ validate_response.msg }}
+    {% else %}
+        <span class="badge badge-warning">Server Error</span> {{ validate_response.msg }}
+    {% endif %}{% endif %}
+</div>
+{% endif %}
+<form method="post" action="{% url 'view_define_ec_form' %}" class="xform-horizontal">
+    {% csrf_token %}
+    <table>
+        {% for field in ec_form %}
+        <tr>
+            <td style="font-weight:normal; padding:0 5px 7px 0;" class="text-left">{{ field.label }}
+           
+                </td>
+            <td>{{ field }}</td>
+            <td style="font-weight:normal; padding:0 5px 7px 20px;" class="text-left text-info"> {% if field.errors %}<span class="text-error">
+                          {% for err in field.errors %}
+                             {{ err }} 
+                          {% endfor %}</span>
+             {% endif %}
+                {% if ec_description_dict|ec_val_lookup:field.name %}
+                    {{ ec_description_dict|ec_val_lookup:field.name }}
+                {% endif %}
+             </td>
+        </tr>
+        {% endfor %}
+                
+        <tr>
+            <td colspan="2" style="text-right">
+                   <br> <a class="btn" href="{% url 'view_define_ec_form' %}">Reset</a>
+                    &nbsp; <input type="submit" name="submit" value="Define Code" class="btn btn-primary" />
+                    
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+      	</table>
+
+      	</form>
+      
+      

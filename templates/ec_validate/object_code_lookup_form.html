@@ -1,0 +1,36 @@
+<br />
+
+{% if object_code_lookup_form %}
+<div style="">
+<div style="font-size:120%;padding:10px 0;"><b>Find Object Code by Description</b></div>
+<p>Search by object description:</b>
+
+<form method="post" action="{% url view_define_ec_form %}">
+{% comment %}{{ object_code_lookup_form }}    {% endcomment %}
+
+<table>
+    <tr>
+    {% for f in object_code_lookup_form %}
+        {% if not f.is_hidden %}
+        <td>{{ f }}
+        {% if f.errors %}
+            {% for fe in f.errors %}
+                <br /><span class="form_err">{{ fe }}</span>
+            {% endfor %}
+        {% endif %}
+        </td>
+        {% else %}
+            {{ f }}
+        {% endif %}
+    {% endfor %}
+    </tr>
+    <tr>
+        <td style="border:none; text-align:right;">
+                <input type="reset" name="reset" value="reset" />
+                &nbsp; <input type="submit" name="submit" value="submit" />            
+        </td>
+    </tr>
+</table>
+</form>
+</div>
+{% endif %}

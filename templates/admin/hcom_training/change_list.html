@@ -1,0 +1,12 @@
+{% extends "admin/change_list.html" %}
+
+{% block pretitle %}
+<p>
+    <div style="border:1px solid #999; padding:5px; width:450px; background-color:#f1f1f1">
+        <a href="{% url view_hcom_trainee_xls %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" style="text-decoration:underline;">Download Trainee Listing (.xls)</a>
+        &nbsp; | &nbsp;
+        <a href="{% url view_hcom_trainee_email_addresses %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" style="text-decoration:underline;" target="_blank">View Trainee Email Addresses</a>
+        
+    </div>
+<!--br />path:{{ request.get_full_path }} --></p>
+{% endblock %}

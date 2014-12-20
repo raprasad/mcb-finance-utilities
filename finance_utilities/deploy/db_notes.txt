@@ -1,0 +1,10 @@
+CREATE DATABASE mcb_finance_utilities CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE test_mcb_finance_utilities CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE USER 'mcb_finance_user'@'localhost' IDENTIFIED BY '';
+GRANT ALL ON mcb_finance_utilities.* TO 'mcb_finance_user'@'localhost';
+GRANT ALL ON test_mcb_finance_utilities.* TO 'mcb_finance_user'@'localhost';
+
+mysqladmin -u root password NEWPASSWORD
+
+

@@ -1,0 +1,30 @@
+<html>
+<head>
+<link href="https://webapps.sciences.fas.harvard.edu/media-mcb/mcb/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<script language="javascript"  src="https://webapps.sciences.fas.harvard.edu/media-mcb/js/jquery-1.2.3.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+    //alert('ok');
+    $("#email_items").select();
+});
+
+//-->
+</script>
+    
+</head>
+<body>
+<div style="padding:40px;">
+{% if ERR_no_trainees %}
+Sorry!  No trainees were found!
+{% endif %}
+
+{% if trainees %}
+<p><b># trainee emails</b>: {{ trainees.count }}</p>
+<textarea rows="10" cols="50" id="email_items">
+{% for t in trainees %}{% if not forloop.first %}; {% endif %}{{ t.email }}{% endfor %}
+</textarea>
+{% endif %}
+</div>
+</body>
+</html>

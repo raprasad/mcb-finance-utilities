@@ -1,0 +1,1 @@
+ {% if trainee %} http://webapps.sciences.fas.harvard.edu{% url view_hcom_confirmation trainee.id_md5 %}{% else %}(sorry, url not available){% endif %}

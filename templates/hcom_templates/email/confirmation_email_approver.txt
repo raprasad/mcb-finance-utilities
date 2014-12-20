@@ -1,0 +1,23 @@
+Dear {{ trainee.fname }} {{ trainee.lname }},
+ 
+Please SAVE THE DATE:  {{ trainee.location.training_date|date:"F jS, Y " }} 10am-12pm for REQUIRED Hands-on Approver training.  Lunch will be provided.
+
+Location:  {{ trainee.location.room }}
+ 
+To RSVP, please click on the following link: 
+
+{% include "hcom_templates/email/confirmation_url.txt" %}
+ 
+Thank you,
+ 
+Jessica Manning
+ 
+ 
+Jessica A. Manning
+Associate Director of Finance
+Department of Molecular and Cellular Biology
+
+Harvard University
+Tel: (617) 495-5719
+Fax: (617) 495-9956
+jmanning@mcb.harvard.edu

@@ -1,0 +1,43 @@
+{% extends "hcom_templates/hcom_base.html" %}
+
+{% block main_content %}
+
+    {% if trainee %}
+        <div class="action_title">HCOM Training Confirmation<br />for <b>{{ trainee.fname }} {{ trainee.lname }}</b></div>    
+    {% else %}
+        <div class="action_title">HCOM Training Confirmation </div>
+    {% endif %}
+    {% if ERR_MSG %}
+        <div class="err_box">
+        {% if ERR_trainee_not_found %}
+        Sorry, your name was not found in the database.
+        
+        <p>Please contact <a href="mailto:jmanning@mcb.harvard.edu">Jessica Manning</a> for more information on the training schedule.</p>
+        {% endif %}
+        
+        {% if ERR_already_confirmed %}
+        You are already confirmed to attend the training session.
+        
+       
+        {% endif %}
+        </div>
+    {% endif %}
+
+    {% if not ERR_trainee_not_found %}
+    <div class="gb">
+        You have been confirmed for HCOM training:
+        
+        <br /><br /><b>Training Type</b>: {% if trainee.has_demo_training %}HCOM Demonstration{% endif %}
+                                {% if trainee.has_hands_on_training %}Hands-On{% endif %}
+        <br /><br /><b>Date</b>: 
+            {% if trainee.demo_training_date %}{{ trainee.demo_training_date|date:"F jS, Y" }}{% endif %} 
+            {% if trainee.hands_on_training_date %}{{ trainee.hands_on_training_date|date:"F jS, Y "}}{% endif %} 
+         {% if trainee.location %}
+         <br /><br /><b>Location</b>: {{ trainee.location.room }}    
+        {% endif %}    
+        
+         <p>If you have any questions, please contact <a href="mailto:jmanning@mcb.harvard.edu">Jessica Manning</a>.</p>
+    </div>
+    {% endif %}
+    
+{% endblock %}

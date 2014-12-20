@@ -1,0 +1,59 @@
+{% extends "ec_validate/base2.html" %}
+
+
+{% block additional_header_info %}
+{{ block.super }}
+
+{% endblock %}
+    
+{% block main_content %}
+    <p><span class="badge badge-success">Active</span> MCB Root Listing</p>
+   {% for rt in mcb_roots %}
+       {% if forloop.first %}
+       <table class="table table-bordered table-striped">
+           <thead>
+               <th>#</th>
+               <th>Root</th>
+               <th>Active</th>
+               <th>Description</th>
+               <th>Create Date</th>
+               <th>Last Update</th>
+               <th>Effective End Date</th>
+           </thead>
+       <tbody>
+       {% endif %}
+       
+   
+       <tr>
+           <td>{{ forloop.counter }}</td> 
+           <td><b>{{ rt.value }}</b></td> 
+           <td>{% if rt.enabled_flag %}<span class="badge badge-success">Yes</span>
+               {% else %}
+                   <span class="badge badge-important">No</span>
+               {% endif %}</td>
+           <td>{{ rt.desc }}</td> 
+           <td>{{ rt.last_update|date:"m-d-Y" }}</td> 
+           <td>{{ rt.last_update|date:"m-d-Y" }}</td> 
+           <td>{% if rt.effective_end_date %}
+                {{ rt.effective_end_date|date:"m-d-Y" }}
+               {% else %}n/a
+               {% endif %}</td> 
+           
+      </tr>
+    {% empty %}
+          <tr>
+              <td colspan="7"><div class="alert alert-warning">
+                   Sorry, no roots in the database
+               </div></td>
+          </td>
+    {% endfor %}
+        </tbody>
+     </table>
+{% endblock  %}
+
+
+
+
+
+
+ 

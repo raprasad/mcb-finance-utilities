@@ -1,0 +1,6 @@
+
+sudo tail -n200 /var/log/apache2/mcb-adminapps.unix.fas.harvard.edu_error.log
+ CustomLog /var/log/apache2/mcb-adminapps.unix.fas.harvard.edu_access.log combined
+
+sudo tail -n200  /var/log/apache2/ssl-mcb-adminapps.unix.fas.harvard.edu_error.log
+CustomLog /var/log/apache2/ssl-mcb-adminapps.unix.fas.harvard.edu_access.log combined

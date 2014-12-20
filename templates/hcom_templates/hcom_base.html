@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+
+<title>{% block title_tab_val %}HCOM Training Confirmation{% endblock %}</title>
+
+<meta name="MSSmartTagsPreventParsing" content="true" />
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="/media-mcb/mcb/css/base.css" rel="stylesheet" type="text/css" media="screen" />
+<script language="javascript"  src="/media/js/jquery-1.2.3.pack.js" type="text/javascript"></script>
+{% block additional_header_infos %}
+<style>
+.err_box{margin:10px 0; width:380px; padding:10px; border:2px solid #ff0000;  background-color:#fad4d4; }
+.gb{margin:10px 0;  width:380px;padding:10px; border:2px solid #77aa56; background-color:#e3f7df;}
+.action_title{background-color: #FAFAE8;
+    border: 1px solid #999999;
+    color: #333333;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    width: 380px;}
+</style>
+{% endblock %}
+
+</head>
+
+<body>
+
+    <div style="padding:0px 10px 12px 0;margin:0 0 0px 0;  border-bottom:1px solid #006699; width:100%;">
+
+        <!-- logon --><div style="float:left;"><a href="#"><img src="http://webapps.sciences.fas.harvard.edu/media/imgs/harvard_shield.jpg" alt="mcb" width="100" style="margin:4px 8px;" /></a></div>
+        <!--div style="float:left;"><a href="/mcb/retreat/"><img src="/media/imgs/mcb_banner.gif" alt="mcb" /></a></div-->
+        <!-- titles and user info -->
+        <div style="padding:7px 20px;float:left;width:450px;">
+        
+                <h1><a href="#" class="title_link2">Harvard University</a> 
+                    <br /><a href="#" class="title_link1">Department of Molecular &amp; Cellular Biolgy</a>
+                    <br /><a href="#" class="title_link2">&gt; HCOM Training Confirmation</a>
+                </h1>
+            <br />
+
+        </div>
+    <div class="clear"></div>
+    </div> 
+    {% block breadcrumb %}<!-- breadcrumb -->{% endblock %}
+    <div style="margin:0px 20px;">
+    {% block main_content %}main content {% endblock %}
+    ({% now "F jS, Y f:s a" %})
+    </div>
+</body>
+</html>

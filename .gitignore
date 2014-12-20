@@ -1,3 +1,4 @@
+finance_utilities/config/p*.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
